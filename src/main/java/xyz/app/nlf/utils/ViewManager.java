@@ -13,12 +13,16 @@ public class ViewManager {
     
    private static final ViewManager INSTANCE = new ViewManager();
    
+   private ViewManager() {
+   
+   }
+   
    public static ViewManager get() {
        return INSTANCE;
    }
    
-   public Parent loadFXML(String fxml) throws IOException {
-        String fxmlFile = String.format("/fxml/%s.fxml", fxml);
+   public Parent loadPrimaryFXML() throws IOException {
+        String fxmlFile = String.format("/fxml/%s.fxml", Views.PRIMARY.fileName());
         FXMLLoader fxmlLoader = new FXMLLoader(ViewManager.class.getResource(fxmlFile));
         return fxmlLoader.load();
     }  

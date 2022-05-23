@@ -1,13 +1,31 @@
 package xyz.app.nlf.controllers;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import xyz.app.nlf.App;
+import javafx.scene.control.Label;
 
 public class PrimaryController {
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    private Label messageLabel;
+    
+    public void initialize() {
+        
+    }
+
+    @FXML
+    private void onHome(ActionEvent event) {
+    }
+
+    @FXML
+    private void onBook(ActionEvent event) {
+    }
+
+    @FXML
+    private void onStudent(ActionEvent event) {
+    }
+
+    @FXML
+    private void onLoans(ActionEvent event) {
     }
 }
