@@ -9,7 +9,8 @@ public class HomeController {
     private Label textLabel;
     
     public void initialize() {
-        textLabel.setText("Books:\nStudents:\nLoans:\n");
+        String text = String.format("Books: %d\nStudents: %d\nLoans: %d\n", 0,0,0);
+        textLabel.setText(text);
     }
         
 }
