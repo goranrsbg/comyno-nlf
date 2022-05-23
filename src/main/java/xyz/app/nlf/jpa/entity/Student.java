@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Length;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Books.all", query = "SELECT s FROM Student s ORDER BY s.name")
+    @NamedQuery(name = "Students.all", query = "SELECT s FROM Student s ORDER BY s.name")
 })
 @Table(name = "students", indexes = {
     @Index(name = "student_name", columnList = "name")
