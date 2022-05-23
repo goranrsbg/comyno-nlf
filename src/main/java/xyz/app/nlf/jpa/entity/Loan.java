@@ -35,7 +35,7 @@ public class Loan {
     @Version
     private int version;
     
-    @Column(name = "date", length = 255, nullable = false)
+    @Column(name = "loan_date", length = 255, nullable = false)
     private LocalDate date;
     
     @ManyToOne
@@ -124,6 +124,5 @@ public class Loan {
     public String toString() {
         return String.format("%d v%d - %s (%s) %s STATUS %s", id, version, book, student, date.toString(), returned ? "Not returned" : "Returned");
     }
-    
-    
+
 }
