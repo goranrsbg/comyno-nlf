@@ -21,19 +21,26 @@ public class PrimaryController {
 
     @FXML
     private void onHome(ActionEvent event) {
-        borderPane.setCenter(ViewManager.get().loadFXML(Views.HOME));
+        changeCenterNode(Views.HOME);
     }
 
     @FXML
     private void onBook(ActionEvent event) {
+        changeCenterNode(Views.BOOK);
     }
 
     @FXML
     private void onStudent(ActionEvent event) {
+        changeCenterNode(Views.STUDENT);
     }
 
     @FXML
     private void onLoans(ActionEvent event) {
+        changeCenterNode(Views.LOAN);
+    }
+    
+    private void changeCenterNode(Views view) {
+        borderPane.setCenter(ViewManager.get().loadFXML(view));
     }
     
 }

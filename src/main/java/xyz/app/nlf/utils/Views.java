@@ -7,7 +7,10 @@ package xyz.app.nlf.utils;
  */
 public enum Views {
     PRIMARY("primary"),
-    HOME("home");
+    HOME("home"),
+    BOOK("book"),
+    STUDENT("student"),
+    LOAN("loan");
 
     private final String file_name;
     
