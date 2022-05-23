@@ -43,4 +43,7 @@ public class PrimaryController {
         borderPane.setCenter(ViewManager.get().loadFXML(view));
     }
     
+    public void setMessageText(String text) {
+        messageLabel.setText(text);
+    }
 }

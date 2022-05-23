@@ -17,6 +17,8 @@ public class SharedData {
     
     private PrimaryController primaryController;
     
+    private Settable settableController;
+    
     private SharedData(){}
     
     public static SharedData get() {
@@ -30,6 +32,13 @@ public class SharedData {
     public void setPrimaryController(PrimaryController primaryController) {
         this.primaryController = primaryController;
     }
-    
+
+    public Settable getSettableController() {
+        return settableController;
+    }
+
+    public void setSettableController(Settable settableController) {
+        this.settableController = settableController;
+    }
     
 }
