@@ -1,14 +1,18 @@
 
 package xyz.app.nlf.jpa.entity;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -44,6 +48,9 @@ public class Book {
     @Column(name = "qty", columnDefinition = "integer default 0", nullable = false)
     private int quantity;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private final Set<Loan> loans;
+    
     public Book() {
         this("", 0);
     }
@@ -51,6 +58,7 @@ public class Book {
     public Book(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
+        loans = new HashSet<>();
     }
 
     public long getId() {
@@ -75,6 +83,10 @@ public class Book {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
     }
 
     @Override

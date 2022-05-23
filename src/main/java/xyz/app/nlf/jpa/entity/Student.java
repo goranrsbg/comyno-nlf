@@ -1,14 +1,18 @@
 
 package xyz.app.nlf.jpa.entity;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import org.hibernate.validator.constraints.Length;
@@ -37,9 +41,17 @@ public class Student {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private final Set<Loan> loans;
+    
     public Student() {
+        this("");
     }
-
+    public Student(String name) {
+        this.name = name;
+        loans = new HashSet<>();
+    }
+    
     public long getId() {
         return id;
     }
@@ -55,9 +67,9 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Student(String name) {
-        this.name = name;
+    
+    public Set<Loan> getLoans() {
+        return loans;
     }
     
     @Override
