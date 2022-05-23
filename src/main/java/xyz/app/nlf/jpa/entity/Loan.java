@@ -14,7 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Version;
-import org.hibernate.exception.DataException;
 
 /**
  *
@@ -49,6 +48,9 @@ public class Loan {
     
     @Column(name = "returned",columnDefinition = "boolean default false", nullable = false)
     private boolean returned;
+
+    public Loan() {
+    }
 
     public Loan(LocalDate date, Book book, Student student) {
         this.date = date;
