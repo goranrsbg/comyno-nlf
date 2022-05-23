@@ -32,6 +32,7 @@
     
     <mapping class="xyz.app.nlf.jpa.entity.Book"/>
     <mapping class="xyz.app.nlf.jpa.entity.Student"/>
+    <mapping class="xyz.app.nlf.jpa.entity.Loan"/>
     
   </session-factory>
 </hibernate-configuration>
