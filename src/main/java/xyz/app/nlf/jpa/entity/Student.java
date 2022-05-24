@@ -72,6 +72,10 @@ public class Student {
         return loans;
     }
     
+    public String toCellString() {
+        return String.format("ID%d %s", id, name);
+    }
+    
     @Override
     public int hashCode() {
         return Long.hashCode(id);

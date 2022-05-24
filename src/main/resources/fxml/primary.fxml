@@ -45,4 +45,20 @@
          </children>
       </VBox>
    </left>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="21.0">
+               <children>
+                  <Label text="All students." />
+                  <Button mnemonicParsing="false" onAction="#onRefreshStudents" text="Refresh" />
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </HBox>
+            <ListView fx:id="studentsListView" onKeyReleased="#onStudentListKeyReleased" onMouseClicked="#onStudentListMouseClicked" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
