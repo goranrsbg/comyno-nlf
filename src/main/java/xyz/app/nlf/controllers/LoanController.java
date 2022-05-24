@@ -78,7 +78,7 @@ public class LoanController implements Settable {
     public void setStudent(Student student) {
         this.student = student;
         studentLabel.setText(student.toCellString());
-        loanedBooksListView.getItems().setAll(StudentsDAO.get().readLoans(student));
+        loanedBooksListView.getItems().setAll(LoanDAO.get().readByStudent(student));
     }
 
     @FXML

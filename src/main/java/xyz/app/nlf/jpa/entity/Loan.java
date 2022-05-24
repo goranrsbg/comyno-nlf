@@ -21,7 +21,8 @@ import javax.persistence.Version;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Loans.all", query = "SELECT l FROM Loan l ORDER BY l.date")
+    @NamedQuery(name = "Loans.all", query = "SELECT l FROM Loan l ORDER BY l.date"),
+    @NamedQuery(name = "Loans.student", query = "SELECT l FROM Loan l WHERE l.student = :student AND l.returned = FALSE ORDER BY l.date")
 })
 @Table(name = "loans", indexes = {
     @Index(name = "loan_idx", columnList = "fk_book, fk_student", unique = true)
@@ -122,7 +123,7 @@ public class Loan {
 
     @Override
     public String toString() {
-        return String.format("%d v%d - %s (%s) %s STATUS %s", id, version, book, student, date.toString(), returned ? "Not returned" : "Returned");
+        return String.format("%d v%d - %s (%s) %s STATUS %s", id, version, book, student, date.toString(), returned ? "Returned" : "Not Returned");
     }
 
 }

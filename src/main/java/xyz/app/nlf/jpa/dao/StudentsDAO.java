@@ -34,22 +34,6 @@ public class StudentsDAO {
         return INSTANCE;
     }
 
-    public Set<Loan> readLoans(Student student) {
-        Session session = SF.openSession();
-        Set<Loan> loans = new HashSet<>();
-        try {
-            session.beginTransaction();
-            Student persistedStudent = session.find(Student.class, student.getId());
-            loans = persistedStudent.getLoans();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        } finally {
-            session.close();
-        }
-        return loans;
-    }
-
     public List<Student> readAll() {
         EntityManager em = SF.createEntityManager();
         List<Student> items = new ArrayList<>();
