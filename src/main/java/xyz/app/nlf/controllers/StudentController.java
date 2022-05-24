@@ -30,6 +30,7 @@ public class StudentController implements Settable {
     public void initialize() {
         SharedData.get().setSettableController(this);
         titleLabel.setText("Student.");
+        populateStudent(new Student());
     }
 
     @Override
