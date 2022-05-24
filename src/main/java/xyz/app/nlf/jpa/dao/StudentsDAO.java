@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package xyz.app.nlf.jpa.dao;
 
 import java.util.ArrayList;
@@ -12,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.app.nlf.jpa.DBUtil;
-import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.Student;
 import xyz.app.nlf.utils.SharedData;
 
