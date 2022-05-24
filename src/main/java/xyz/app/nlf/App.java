@@ -25,8 +25,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(ViewManager.get().loadPrimary(), 640, 480);
+        Scene scene = new Scene(ViewManager.get().loadPrimary(), 960d, 540d);
         stage.setScene(scene);
+        stage.setMinHeight(480d);
+        stage.setMinWidth(640d);
         stage.show();
     }
 
