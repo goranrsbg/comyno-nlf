@@ -59,6 +59,7 @@ public class BookController implements Settable{
     private void onDelete(ActionEvent event) {
         if(loadedBook != null || loadedBook.getId() > 0) {
             BooksDAO.get().delete(loadedBook);
+            populateBook(new Book());
         }
     }
 
