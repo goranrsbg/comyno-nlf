@@ -57,7 +57,7 @@ public class BookController implements Settable{
 
     @FXML
     private void onDelete(ActionEvent event) {
-        if(loadedBook != null) {
+        if(loadedBook != null || loadedBook.getId() > 0) {
             BooksDAO.get().delete(loadedBook);
         }
     }
@@ -91,7 +91,7 @@ public class BookController implements Settable{
             loadedBook.setQuantity(qty);
             loadedBook.setName(nameTextField.getText());
             return true;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             SharedData.get().getPrimaryController().setMessageText(qtyText + " is not valid number.");
         }
         return false;
