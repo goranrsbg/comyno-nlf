@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.util.StringConverter;
 import xyz.app.nlf.jpa.dao.LoanDAO;
+import xyz.app.nlf.jpa.dao.StudentsDAO;
 import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.Loan;
 import xyz.app.nlf.jpa.entity.Student;
@@ -77,6 +78,7 @@ public class LoanController implements Settable {
     public void setStudent(Student student) {
         this.student = student;
         studentLabel.setText(student.toCellString());
+        loanedBooksListView.getItems().setAll(StudentsDAO.get().readLoans(student));
     }
 
     @FXML
