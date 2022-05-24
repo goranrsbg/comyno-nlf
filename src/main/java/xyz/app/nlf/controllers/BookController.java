@@ -52,6 +52,7 @@ public class BookController implements Settable{
             } else {
                 BooksDAO.get().update(loadedBook);
             }
+            populateBook(new Book());
         }
     }
 

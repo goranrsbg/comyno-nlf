@@ -41,4 +41,11 @@ public class SharedData {
         this.settableController = settableController;
     }
     
+    /**
+     * Show message on primary view.
+     * @param message Text to be shown.
+     */
+    public void writeMessage(String message) {
+        primaryController.setMessageText(message);
+    }
 }

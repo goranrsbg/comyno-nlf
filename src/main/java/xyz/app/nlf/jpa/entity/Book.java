@@ -89,6 +89,10 @@ public class Book {
         return loans;
     }
 
+    public String toShortString() {
+        return String.format("ID%d %s", id, name);
+    }
+    
     @Override
     public int hashCode() {
         return Long.hashCode(id);

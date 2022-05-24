@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import xyz.app.nlf.jpa.dao.BooksDAO;
 import xyz.app.nlf.jpa.dao.StudentsDAO;
 import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.Student;
@@ -51,6 +50,7 @@ public class StudentController implements Settable {
             } else {
                 StudentsDAO.get().update(loadedStudent);
             }
+            populateStudent(new Student());
         }
     }
 
