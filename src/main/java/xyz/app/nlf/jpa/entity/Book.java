@@ -107,5 +107,10 @@ public class Book {
                 && quantity == other.getQuantity()
                 && name.equals(other.getName());
     }
+
+    @Override
+    public String toString() {
+        return String.format("ID%d %s (%d)", id, name, quantity);
+    }
     
 }
