@@ -1,17 +1,15 @@
 package xyz.app.nlf.jpa.dao;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.app.nlf.jpa.DBUtil;
-import xyz.app.nlf.jpa.entity.Loan;
 import xyz.app.nlf.jpa.entity.Student;
 import xyz.app.nlf.utils.SharedData;
 
@@ -105,6 +103,25 @@ public class StudentsDAO {
             em.close();
         }
     }
+    
+    public int countStudents() {
+        EntityManager em = SF.createEntityManager();
+        int total = 0;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createNativeQuery("SELECT COUNT(*) FROM students");
+            total = ((BigInteger) query.getSingleResult()).intValue();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            write(e.getMessage());
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return total;
+    }
+
 
     /**
      * Show text on message label in primary view.

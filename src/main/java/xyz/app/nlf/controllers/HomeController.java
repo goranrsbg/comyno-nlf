@@ -3,6 +3,7 @@ package xyz.app.nlf.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import xyz.app.nlf.jpa.dao.BooksDAO;
+import xyz.app.nlf.jpa.dao.StudentsDAO;
 import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.BooksCount;
 import xyz.app.nlf.jpa.entity.Student;
@@ -17,7 +18,8 @@ public class HomeController implements Settable {
     public void initialize() {
         SharedData.get().setSettableController(this);
         BooksCount bc = BooksDAO.get().countBooks();
-        String text = String.format("Library\n Total Books: %d\nTotal Students: %d\nTotal Book Loaned: %d", bc.getQty(), 0, bc.getQtyLoan());
+        int totalStudents = StudentsDAO.get().countStudents();
+        String text = String.format("Library\n Total Books: %d\nTotal Students: %d\nTotal Book Loaned: %d", bc.getQty(), totalStudents, bc.getQtyLoan());
         textLabel.setText(text);
     }
 
