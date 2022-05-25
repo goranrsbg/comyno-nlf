@@ -65,6 +65,7 @@ public class LoanDAO {
             em.merge(loan.getBook());
             write(String.format("Book %s, loaned by %s.", loan.getBook().getName(), loan.getStudent().getName()));
             em.getTransaction().commit();
+            refreshBookListView();
         } catch (Exception e) {
             em.getTransaction().rollback();
             LOGGER.error(e.getMessage(), e);
@@ -93,6 +94,7 @@ public class LoanDAO {
             em.merge(book);
             write(String.format("Book %s, loaned by %s. Returned.", loan.getBook().getName(), loan.getStudent().getName()));
             em.getTransaction().commit();
+            refreshBookListView();
         } catch (Exception e) {
             em.getTransaction().rollback();
             LOGGER.error(e.getMessage(), e);
@@ -101,6 +103,13 @@ public class LoanDAO {
             em.close();
         }
         return merged == null ? loan : merged;
+    }
+    
+    /**
+     * In primary view-controller refresh books after book update.
+     */
+    private void refreshBookListView() {
+        SharedData.get().getPrimaryController().refreshBooks();
     }
 
     /**
