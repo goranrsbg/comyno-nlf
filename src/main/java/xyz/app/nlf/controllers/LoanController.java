@@ -82,7 +82,7 @@ public class LoanController implements Settable {
     public void setStudent(Student student) {
         this.student = student;
         studentLabel.setText(student.toCellString());
-        loanedBooksListView.getItems().setAll(LoanDAO.get().readByStudent(student));
+        loadStudentsLoans();
     }
 
     @FXML
@@ -97,10 +97,16 @@ public class LoanController implements Settable {
         }
         Loan loan = new Loan(datePicker.getValue(), book, student);
         LoanDAO.get().save(loan);
+        // refresh student loan list
+        loadStudentsLoans();
     }
 
     @FXML
     private void onReturnBook(ActionEvent event) {
+    }
+    
+    private void loadStudentsLoans() {
+        loanedBooksListView.getItems().setAll(LoanDAO.get().readByStudent(student));
     }
     
 }

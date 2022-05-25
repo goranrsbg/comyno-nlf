@@ -52,12 +52,19 @@ public class LoanDAO {
         }
         return loans;
     }
-
+    
+    /**
+     * In transaction save loan and update loans book increase qty_loaned.
+     * 
+     * @param loan to be saved.
+     */
     public void save(Loan loan) {
         EntityManager em = SF.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(loan);
+            loan.getBook().loan();
+            em.merge(loan.getBook());
             write(String.format("Book %s, loaned by %s.", loan.getBook().getName(), loan.getStudent().getName()));
             em.getTransaction().commit();
         } catch (Exception e) {
