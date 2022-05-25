@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.util.StringConverter;
 import xyz.app.nlf.jpa.dao.LoanDAO;
 import xyz.app.nlf.jpa.entity.Book;
@@ -66,7 +67,9 @@ public class LoanController implements Settable {
                 }
             }
         });
+        // init loaned books list view
         loanedBooksListView.setCellFactory(new LoanCellFactory());
+        loanedBooksListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @Override
@@ -106,6 +109,18 @@ public class LoanController implements Settable {
 
     @FXML
     private void onReturnBook(ActionEvent event) {
+        Loan loan = loanedBooksListView.getSelectionModel().getSelectedItem();
+        if (student == null) {
+            SharedData.get().writeMessage("Sudent is not selected.");
+            return;
+        }
+        if (loan == null) {
+            SharedData.get().writeMessage(String.format("%s loaned book is not chosen.", student));
+            return;
+        }
+        LoanDAO.get().update(loan);
+        // refresh loans
+        loadStudentsLoans();
     }
 
     private void loadStudentsLoans() {
@@ -114,5 +129,7 @@ public class LoanController implements Settable {
 
     private void clearLoadedBook() {
         book = null;
+        bookLabel.setText("");
     }
+    
 }

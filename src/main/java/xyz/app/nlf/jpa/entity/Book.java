@@ -102,6 +102,14 @@ public class Book {
     }
     
     /**
+     * Return loaned book. Decrease qty_loaned by one. 
+     */
+    public void returnBook() {
+        quantityLoaned--;
+    }
+
+    
+    /**
      * Calculate books not loaned.
      * qty - qty_loaned
      * 
