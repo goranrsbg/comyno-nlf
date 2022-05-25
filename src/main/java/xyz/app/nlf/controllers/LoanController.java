@@ -13,6 +13,7 @@ import xyz.app.nlf.jpa.dao.StudentsDAO;
 import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.Loan;
 import xyz.app.nlf.jpa.entity.Student;
+import xyz.app.nlf.utils.LoanCellFactory;
 import xyz.app.nlf.utils.Settable;
 import xyz.app.nlf.utils.SharedData;
 
@@ -66,6 +67,7 @@ public class LoanController implements Settable {
                 }
             }
         });
+        loanedBooksListView.setCellFactory(new LoanCellFactory());
     }
 
     @Override
