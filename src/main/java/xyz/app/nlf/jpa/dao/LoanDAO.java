@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.app.nlf.jpa.DBUtil;
+import xyz.app.nlf.jpa.entity.Book;
 import xyz.app.nlf.jpa.entity.Loan;
 import xyz.app.nlf.jpa.entity.Student;
 import xyz.app.nlf.utils.SharedData;
@@ -75,14 +76,25 @@ public class LoanDAO {
             em.close();
         }
     }
-
+    
+    /**
+     * In transaction update loan as set returned value to true
+     * and decrease loans book qty_loaned.
+     * 
+     * @param loan to be updated.
+     * @return 
+     */
     public Loan update(Loan loan) {
         EntityManager em = SF.createEntityManager();
         Loan merged = null;
         try {
             em.getTransaction().begin();
+            loan.setReturned(true);
             merged = em.merge(loan);
-            write(String.format("Book %s, loaned by %s. Updated.", loan.getBook().getName(), loan.getStudent().getName()));
+            Book book = loan.getBook();
+            book.returnBook();
+            em.merge(book);
+            write(String.format("Book %s, loaned by %s. Returned.", loan.getBook().getName(), loan.getStudent().getName()));
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
