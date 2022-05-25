@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,9 +23,7 @@ import javax.persistence.Version;
     @NamedQuery(name = "Loans.all", query = "SELECT l FROM Loan l ORDER BY l.date"),
     @NamedQuery(name = "Loans.student", query = "SELECT l FROM Loan l WHERE l.student = :student AND l.returned = FALSE ORDER BY l.date")
 })
-@Table(name = "loans", indexes = {
-    @Index(name = "loan_idx", columnList = "fk_book, fk_student", unique = true)
-})
+@Table(name = "loans")
 public class Loan {
     
     @Id
