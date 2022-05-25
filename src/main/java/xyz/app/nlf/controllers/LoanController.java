@@ -70,8 +70,12 @@ public class LoanController implements Settable {
 
     @Override
     public void setBook(Book book) {
-        this.book = book;
-        bookLabel.setText(book.toShortString());
+        if(book.canLoan()) {
+            this.book = book;
+            bookLabel.setText(book.toShortString());
+        } else {
+            SharedData.get().writeMessage(String.format("%s can not be loaned. Left over is %d.", book.toShortString(), book.getQuantityLeftOver()));
+        }
     }
 
     @Override
