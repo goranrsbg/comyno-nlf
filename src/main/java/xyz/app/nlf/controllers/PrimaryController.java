@@ -62,9 +62,7 @@ public class PrimaryController {
 
     @FXML
     private void onRefreshBooks(ActionEvent event) {
-        List<Book> books = BooksDAO.get().readAll();
-        booksListView.getItems().clear();
-        booksListView.getItems().addAll(books);
+        refreshBooks();
     }
 
     @FXML
@@ -124,6 +122,15 @@ public class PrimaryController {
         if (student != null && controller != null) {
             controller.setStudent(student);
         }
+    }
+    
+    /**
+     * Refresh items in book list view.
+     */
+    public void refreshBooks() {
+        List<Book> books = BooksDAO.get().readAll();
+        booksListView.getItems().clear();
+        booksListView.getItems().addAll(books);
     }
 
 }
