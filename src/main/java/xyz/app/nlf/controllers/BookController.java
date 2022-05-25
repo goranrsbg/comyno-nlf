@@ -90,13 +90,18 @@ public class BookController implements Settable{
         String qtyText = quantityTextField.getText();
         try {
             int qty = Integer.parseInt(qtyText);
+            // check if qty is >= qty_loaned
+            if(qty < loadedBook.getQuantityLoaned()) {
+                SharedData.get().getPrimaryController().setMessageText(String.format("Minimum value for quantity is %d.", loadedBook.getQuantityLoaned()));
+                return false;
+            }
             loadedBook.setQuantity(qty);
             loadedBook.setName(nameTextField.getText());
-            return true;
         } catch (NumberFormatException e) {
             SharedData.get().getPrimaryController().setMessageText(qtyText + " is not valid number.");
+            return false;
         }
-        return false;
+        return true;
     }
     
 }
