@@ -4,6 +4,8 @@ package xyz.app.nlf.jpa.entity;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Min;
@@ -26,7 +29,11 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @SequenceGenerator(name = "id_generator", sequenceName = "id_sequence", allocationSize = 17)
 @NamedQueries({
-    @NamedQuery(name = "Books.all", query = "SELECT b FROM Book b ORDER BY b.name")
+    @NamedQuery(name = "Books.all", query = "SELECT b FROM Book b ORDER BY b.name"),
+})
+@SqlResultSetMapping(name = "BookCount", classes = {
+    @ConstructorResult(targetClass = BooksCount.class, 
+    columns = {@ColumnResult(name = "qty", type = Integer.class), @ColumnResult(name = "qtyLoan", type = Integer.class)})
 })
 @Table(name = "books", indexes = {
     @Index(name = "book_name", columnList = "name", unique = true)
