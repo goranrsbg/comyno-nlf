@@ -47,6 +47,10 @@ public class Book {
     @Min(value = 0)
     @Column(name = "qty", columnDefinition = "integer default 0", nullable = false)
     private int quantity;
+    
+    @Min(value = 0)
+    @Column(name = "qty_loaned", columnDefinition = "integer default 0", nullable = false)
+    private int quantityLoaned;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private final Set<Loan> loans;
@@ -58,6 +62,7 @@ public class Book {
     public Book(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
+        this.quantityLoaned = 0;
         loans = new HashSet<>();
     }
 
@@ -85,6 +90,36 @@ public class Book {
         this.quantity = quantity;
     }
 
+    public int getQuantityLoaned() {
+        return quantityLoaned;
+    }
+
+    /**
+     * Loan the book. Increase qty_loan by one.
+     */
+    public void loan() {
+        quantityLoaned++;
+    }
+    
+    /**
+     * Calculate books not loaned.
+     * qty - qty_loaned
+     * 
+     * @return Number of books not loaned.
+     */
+    public int getQuantityLeftOver() {
+        return quantity - quantityLoaned;
+    }
+    
+    /**
+     * Checks if number of books is greater that loaned books.
+     * 
+     * @return true if qty greater then qty_loaned
+     */
+    public boolean canLoan() {
+        return quantity > quantityLoaned;
+    }
+    
     public Set<Loan> getLoans() {
         return loans;
     }
@@ -109,12 +144,13 @@ public class Book {
         final Book other = (Book) obj;
         return id == other.getId()
                 && quantity == other.getQuantity()
+                && quantityLoaned == other.getQuantityLoaned()
                 && name.equals(other.getName());
     }
 
     @Override
     public String toString() {
-        return String.format("ID%d %s (%d)", id, name, quantity);
+        return String.format("ID%d %s |%d|(%d)", id, name, getQuantityLeftOver(), quantity);
     }
     
 }
