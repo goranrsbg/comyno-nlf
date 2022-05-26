@@ -4,10 +4,10 @@
   "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
+    <!--<property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:derby:nlfdb;create=true</property>-->
     <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
-    `<property name="connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
     <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/nlf</property>
-    <property name="hibernate.connection.url">jdbc:derby:nlfdb;create=true</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
     <property name="connection.autocommit">false</property>
@@ -19,8 +19,8 @@
     <property name="hibernate.c3p0.max_statements">50</property>
     <property name="hibernate.c3p0.idle_test_period">3000</property>
       
-    <property name="dialect">org.hibernate.dialect.MariaDB10Dialect</property>
     <!--<property name="dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>-->
+    <property name="dialect">org.hibernate.dialect.MariaDB10Dialect</property>
     
     <property name="current_session_context_class">thread</property>
     
