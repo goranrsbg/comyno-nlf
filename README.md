@@ -11,3 +11,7 @@ NLF must support these actions:
 #### To build and run
 `mvn clean install`
 `mvn jfx:run`
+
+##### Executable jar with embedded apache derby in current directory, java 1.8 required
+**/app** contains entire app with libraries
+**/app/run.bat** on windows executes `java -jar app-name.jar`
