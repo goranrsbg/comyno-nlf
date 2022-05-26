@@ -15,3 +15,5 @@ NLF must support these actions:
 ##### Executable jar with embedded apache derby in current directory, java 1.8 required
 **/app** contains entire app with libraries
 **/app/run.bat** on windows executes `java -jar app-name.jar`
+
+![Alt text](/app/how_to.jpg?raw=true "How to App!")
